@@ -1,12 +1,19 @@
-// server.js
-const express = require('express');
-const cors = require('cors');
+// PORT=5000
+// NODE_ENV=developmentire('express');
+
+
+
+
+const express = require('express');require('dotenv').config();// filepath: d:\College\Codes\Algorithms\mars-rover-navigation\server\server.jsconst cors = require('cors');
+//Algorithms Import
 const { bfs } = require('./algorithms/bfs');
 const {dfs}= require('./algorithms/dfs');
 const {dijkstra}= require('./algorithms/dijkstra');
 const {astar}= require('./algorithms/astar');
 const {bestFirst}= require('./algorithms/bestfirst');
+//Algos Above
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
@@ -36,4 +43,5 @@ app.post('/path', (req, res) => {
   res.json(result);
 });
 
-app.listen(5000, () => console.log('Server running on port 5000'));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

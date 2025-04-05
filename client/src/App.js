@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 
+const apiUrl = process.env.REACT_APP_API_URL;
+
 function App() {
   const [grid, setGrid] = useState(() => {
     return Array(20).fill().map(() => Array(20).fill(0));
@@ -40,7 +42,7 @@ function App() {
 
   const solvePath = async () => {
     try {
-      const response = await fetch('http://localhost:5000/path', {
+      const response = await fetch(`${apiUrl}/path`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ grid, start, end, algorithm })
