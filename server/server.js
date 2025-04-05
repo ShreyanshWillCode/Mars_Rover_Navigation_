@@ -1,21 +1,25 @@
-// PORT=5000
-// NODE_ENV=developmentire('express');
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
 
-
-
-
-const express = require('express');require('dotenv').config();// filepath: d:\College\Codes\Algorithms\mars-rover-navigation\server\server.jsconst cors = require('cors');
-//Algorithms Import
-const { bfs } = require('./algorithms/bfs');
-const {dfs}= require('./algorithms/dfs');
-const {dijkstra}= require('./algorithms/dijkstra');
-const {astar}= require('./algorithms/astar');
-const {bestFirst}= require('./algorithms/bestfirst');
-//Algos Above
 const app = express();
 
-app.use(cors());
+// Allow requests from the frontend URL specified in the .env file
+const corsOptions = {
+  origin: process.env.FRONTEND_URL, // Use FRONTEND_URL from .env
+  methods: ['GET', 'POST'],
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
+
+// Algorithms Import
+const { bfs } = require('./algorithms/bfs');
+const { dfs } = require('./algorithms/dfs');
+const { dijkstra } = require('./algorithms/dijkstra');
+const { astar } = require('./algorithms/astar');
+const { bestFirst } = require('./algorithms/bestfirst');
 
 // API endpoint to compute path
 app.post('/path', (req, res) => {

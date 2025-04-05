@@ -45,13 +45,14 @@ function App() {
       const response = await fetch(`${apiUrl}/path`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ grid, start, end, algorithm })
+        body: JSON.stringify({ grid, start, end, algorithm }),
       });
       const data = await response.json();
       setVisited(data.visited || []);
       setPath(data.path || []);
     } catch (error) {
       alert('Error finding path!');
+      console.error('Error:', error);
     }
   };
 
