@@ -6,7 +6,11 @@ const app = express();
 
 // Allow requests from the frontend URL specified in the .env file
 const corsOptions = {
-  origin: process.env.FRONTEND_URL, // Use FRONTEND_URL from .env
+  origin: [
+    process.env.FRONTEND_URL,
+    'http://localhost:3000', // For local development
+    'https://mars-rover-navigationfrontend.vercel.app/' // Your Vercel deployed frontend
+  ],
   methods: ['GET', 'POST'],
   credentials: true,
 };
