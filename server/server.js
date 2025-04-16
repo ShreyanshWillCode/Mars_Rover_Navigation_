@@ -9,7 +9,7 @@ const corsOptions = {
   origin: [
     process.env.FRONTEND_URL,
     'http://localhost:3000', // For local development
-    'https://mars-rover-navigationfrontend.vercel.app/' // Your Vercel deployed frontend
+    'https://mars-rover-navigationfrontend.vercel.app' // Your Vercel deployed frontend
   ],
   methods: ['GET', 'POST'],
   credentials: true,
