@@ -18,6 +18,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Add a root route handler for GET requests
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Mars Rover Navigation API is running',
+    endpoints: [
+      { method: 'POST', path: '/path', description: 'Calculate rover path using various algorithms' }
+    ]
+  });
+});
+
 // Algorithms Import
 const { bfs } = require('./algorithms/bfs');
 const { dfs } = require('./algorithms/dfs');
@@ -51,5 +61,11 @@ app.post('/path', (req, res) => {
   res.json(result);
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// Export for Vercel serverless deployment
+module.exports = app;
